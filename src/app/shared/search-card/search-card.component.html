@@ -1,0 +1,12 @@
+<mat-card class="search-card">
+  <img class="search-card__image" mat-card-image [src]="promotion.image">
+  <mat-card-content>
+    <ul class="search-card__list">
+      <li class="search-card__item">{{promotion.destination}}</li>
+      <li class="search-card__item">R$ {{promotion.price}}</li>
+    </ul>
+  </mat-card-content>
+  <mat-card-actions>
+    <button class="search-card__button" mat-raised-button color="primary">VER DETALHES</button>
+  </mat-card-actions>
+</mat-card>

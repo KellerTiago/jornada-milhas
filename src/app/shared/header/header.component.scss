@@ -1,0 +1,44 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  padding: 0 256px;
+
+  .toolbar__logo {
+    display: flex;
+    align-items: center;
+
+    .toolbar__logo-image {
+      width: 3em;
+    }
+
+    .toolbar__logo-title {
+      padding-top: 10px;
+      color: white;
+    }
+  }
+
+  .toolbar__spacer {
+    flex: 1 1 auto;
+  }
+
+  .toolbar__button {
+    margin: 0 16px;
+    color: white;
+
+    &-sale {
+    }
+
+    &-about {
+    }
+
+    &-register {
+    }
+
+    &-login {
+      &:not(:disabled) {
+        border-color: white;
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+<app-card class="flight-search" [classCard]="'secondary'">
+    <form [formGroup]="searchFormService.formSearch" class="flight-search__form">
+        <div class="flight-search__group">
+            <mat-button-toggle-group formControlName="oneWay" class="flight-search__toggle-group"
+                aria-label="Tipo de passagem">
+                <mat-button-toggle class="flight-search__toggle" value="ida-e-volta">
+                    Ida e Volta
+                </mat-button-toggle>
+                <mat-button-toggle class="flight-search__toggle" value="somente-ida">
+                    Somente Ida
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+
+            <mat-chip-listbox (click)="searchFormService.openDialog()" class="flight-search__chip-list" aria-label="Seleção de passagens">
+                <mat-chip-option class="flight-search__chip" selected>
+                    1 Adulto
+                </mat-chip-option>
+                <mat-chip-option class="flight-search__chip">
+                    Econômica
+                </mat-chip-option>
+            </mat-chip-listbox>
+        </div>
+
+        <div class="flight-search__group">
+            <app-dropdown-us matPrefix="flight_takeoff" matLabel="Origem" matSuffix="search"></app-dropdown-us>
+
+            <button class="flight-search__swap-button" mat-icon-button>
+                <mat-icon class="flight-search__swap-icon">sync_alt</mat-icon>
+            </button>
+
+            <app-dropdown-us matPrefix="flight_land" matLabel="Destino" matSuffix="search"></app-dropdown-us>
+
+            <mat-form-field class="flight-search__date" appearance="outline">
+                <mat-label>Data de ida</mat-label>
+                <input matInput [matDatepicker]="ida">
+                <mat-datepicker-toggle matIconSuffix [for]="ida"></mat-datepicker-toggle>
+                <mat-datepicker #ida></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="flight-search__date" appearance="outline">
+                <mat-label>Data de volta</mat-label>
+                <input matInput [matDatepicker]="volta">
+                <mat-datepicker-toggle matIconSuffix [for]="volta"></mat-datepicker-toggle>
+                <mat-datepicker #volta></mat-datepicker>
+            </mat-form-field>
+            <button class="flight-search__submit" mat-flat-button >Buscar</button>
+        </div>
+        
+    </form>
+</app-card>

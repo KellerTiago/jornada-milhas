@@ -1,0 +1,30 @@
+.search-card {
+  flex-grow: 1;
+  max-width: 600px;
+  min-width: 320px;
+  margin-bottom: 32px;
+  width: 100%;
+  background-color: #fef7ff;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+
+  .search-card__list {
+    list-style: none;
+    padding: 0;
+    .search-card__item {
+      margin: 12px;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 32px;
+      color: #1d1b20;
+      text-align: center;
+    }
+  }
+
+  .search-card__button {
+    width: 100%;
+    margin: 0 16px 48px;
+  }
+}

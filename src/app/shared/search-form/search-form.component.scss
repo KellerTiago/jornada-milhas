@@ -1,0 +1,32 @@
+.flight-search {
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  &__swap-button{
+    height: 40px;
+    margin-bottom: 28px;
+  }
+  &__group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+  }
+  &__toggle-group {
+    border-radius: 16px;
+  }
+  &__submit {
+    background-color: purple;
+    color: white;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+    border-radius: 18px;
+    padding: 0 16px;
+    height: 40px;
+    cursor: pointer;
+    margin-bottom: 28px;
+  }
+}

@@ -1,0 +1,11 @@
+<mat-card class="testimonial">
+  <mat-card-content class="testimonial__content">
+    <img class="testimonial__avatar" [src]="testimonial.avatar" alt="Foto do autor" />
+    <ul class="testimonial__text-wrapper">
+      <li class="testimonial__text">{{ testimonial.text }}</li>
+      <li class="testimonial__author">
+        <strong>{{ testimonial.autor }}</strong>
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>

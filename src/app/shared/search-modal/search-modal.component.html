@@ -1,0 +1,60 @@
+<section class="modal">
+    <mat-dialog-content class="modal__content">
+        <h1 class="modal__title" mat-dialog-title>Viajante</h1>
+        <div class="modal__age-selection">
+            <ul class="modal__age-list">
+                <li class="modal__age-category">Adultos</li>
+                <li class="modal__age-description">(Acima de 12 anos)</li>
+                <li class="modal__age-button">
+                    <button class="modal__button-decrement" mat-mini-fab>
+                        <mat-icon fontIcon="do_not_disturb_on"></mat-icon>
+                    </button>
+                    <span>1</span>
+                    <button class="modal__button-increment" mat-mini-fab>
+                        <mat-icon fontIcon="add_circle"></mat-icon>
+                    </button>
+                </li>
+            </ul>
+            <ul class="modal__age-list">
+                <li class="modal__age-category">Crianças</li>
+                <li class="modal__age-description">(Entre 2 e 11 anos)</li>
+                <li class="modal__age-button">
+                    <button class="modal__button-decrement" mat-mini-fab>
+                        <mat-icon fontIcon="do_not_disturb_on"></mat-icon>
+                    </button>
+                    <span>0</span>
+                    <button class="modal__button-increment" mat-mini-fab>
+                        <mat-icon fontIcon="add_circle"></mat-icon>
+                    </button>
+                </li>
+            </ul>
+            <ul class="modal__age-list">
+                <li class="modal__age-category">Bebês</li>
+                <li class="modal__age-description">(Até 2 anos)</li>
+                <li class="modal__age-button">
+                    <button class="modal__button-decrement" mat-mini-fab>
+                        <mat-icon fontIcon="do_not_disturb_on"></mat-icon>
+                    </button>
+                    <span>1</span>
+                    <button class="modal__button-increment" mat-mini-fab>
+                        <mat-icon fontIcon="add_circle"></mat-icon>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <h1 class="modal__title" mat-dialog-title>Categoria</h1>
+        <div class="modal__category-selection">
+            <mat-chip-listbox class="modal__category-list" aria-label="Seleção de tipos de assentos">
+                <mat-chip-option class="modal__category-item" value="Econômica"
+                    [selected]="searchFormService.formSearch.get('type')?.value === 'Econômica'"
+                    (selectionChange)="searchFormService.changeType($event,'Econômica')">Econômica</mat-chip-option>
+                <mat-chip-option class="modal__category-item" value="Executiva"
+                    [selected]="searchFormService.formSearch.get('type')?.value === 'Executiva'"
+                    (selectionChange)="searchFormService.changeType($event,'Executiva')">Executiva</mat-chip-option>
+            </mat-chip-listbox>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button class="modal__button-close" mat-button mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+</section>

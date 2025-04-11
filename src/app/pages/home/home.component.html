@@ -1,0 +1,24 @@
+<app-banner src="assets/Bannerhomepage.png" alt="Imagem Banner"></app-banner>
+
+<app-container class="home-page">
+  <app-search-form></app-search-form>
+
+  <h2>Promoções</h2>
+  <div class="search-card__wrapper">
+    @if (promotion) {
+    @for (item of promotion; track item.id) {
+    <app-search-card [promotion]="item"></app-search-card>
+    }
+    }
+  </div>
+
+  <h2>Depoimentos</h2>
+  <div class="search-card__wrapper">
+    @if(testimonial){
+    @for (item of testimonial; track $index) {
+    <app-testimonial-card [testimonial]="item"></app-testimonial-card>}
+    }
+  </div>
+</app-container>
+
+<app-footer src="assets/Logo.png" alt="Imagem footer"></app-footer>
