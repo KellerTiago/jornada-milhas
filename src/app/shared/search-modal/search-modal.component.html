@@ -2,45 +2,12 @@
     <mat-dialog-content class="modal__content">
         <h1 class="modal__title" mat-dialog-title>Viajante</h1>
         <div class="modal__age-selection">
-            <ul class="modal__age-list">
-                <li class="modal__age-category">Adultos</li>
-                <li class="modal__age-description">(Acima de 12 anos)</li>
-                <li class="modal__age-button">
-                    <button class="modal__button-decrement" mat-mini-fab>
-                        <mat-icon fontIcon="do_not_disturb_on"></mat-icon>
-                    </button>
-                    <span>1</span>
-                    <button class="modal__button-increment" mat-mini-fab>
-                        <mat-icon fontIcon="add_circle"></mat-icon>
-                    </button>
-                </li>
-            </ul>
-            <ul class="modal__age-list">
-                <li class="modal__age-category">Crianças</li>
-                <li class="modal__age-description">(Entre 2 e 11 anos)</li>
-                <li class="modal__age-button">
-                    <button class="modal__button-decrement" mat-mini-fab>
-                        <mat-icon fontIcon="do_not_disturb_on"></mat-icon>
-                    </button>
-                    <span>0</span>
-                    <button class="modal__button-increment" mat-mini-fab>
-                        <mat-icon fontIcon="add_circle"></mat-icon>
-                    </button>
-                </li>
-            </ul>
-            <ul class="modal__age-list">
-                <li class="modal__age-category">Bebês</li>
-                <li class="modal__age-description">(Até 2 anos)</li>
-                <li class="modal__age-button">
-                    <button class="modal__button-decrement" mat-mini-fab>
-                        <mat-icon fontIcon="do_not_disturb_on"></mat-icon>
-                    </button>
-                    <span>1</span>
-                    <button class="modal__button-increment" mat-mini-fab>
-                        <mat-icon fontIcon="add_circle"></mat-icon>
-                    </button>
-                </li>
-            </ul>
+            <app-modal-category [formControl]="searchFormService.changControl('adult')" title="Adultos"
+                subtitle="(Acima de 12 anos)">
+            </app-modal-category>
+
+            <app-modal-category title="Crianças" subtitle="(Entre 2 e 11 anos)"></app-modal-category>
+            <app-modal-category title="Bebês" subtitle="(Até 2 anos)"></app-modal-category>
         </div>
         <h1 class="modal__title" mat-dialog-title>Categoria</h1>
         <div class="modal__category-selection">
@@ -55,6 +22,6 @@
         </div>
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button class="modal__button-close" mat-button mat-dialog-close>Close</button>
+        <button class="modal__button-close" mat-button mat-dialog-close>BUSCAR</button>
     </mat-dialog-actions>
 </section>

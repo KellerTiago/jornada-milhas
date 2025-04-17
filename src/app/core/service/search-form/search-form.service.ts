@@ -8,6 +8,7 @@ import { MatChipSelectionChange } from '@angular/material/chips';
   providedIn: 'root',
 })
 export class SearchFormService {
+  
   formSearch: FormGroup;
 
   constructor(private dialog: MatDialog) {
@@ -16,6 +17,9 @@ export class SearchFormService {
       origin: new FormControl(null),
       destination: new FormControl(null),
       type: new FormControl('Econômica'),
+      adult: new FormControl(3),
+      children: new FormControl(0),
+      baby: new FormControl(0),
     });
   }
 
@@ -24,6 +28,32 @@ export class SearchFormService {
       this.formSearch.patchValue({ type });
     }
     console.log('Tipo alterado para: ', type);
+  }
+
+  changControl(name:string): FormControl {
+    const control = this.formSearch.get(name);
+    if (!control) {
+      throw new Error(`FormControl com nome "${name}" não existe.`);
+    }
+    return control as FormControl;
+  }
+
+
+  getDescripionPassenger(): string {
+    let description = '';
+    const adult = this.formSearch.get('adult')?.value;
+    if (adult && adult > 0) {
+      description += `${adult} adultos${adult > 1 ? 's' : ''}`;
+    }
+    const children = this.formSearch.get('children')?.value;
+    if (children && children > 0) {
+      description += `${children} crianças${children > 1 ? 's' : ''}`;
+    }
+    const infants = this.formSearch.get('infants')?.value;
+    if (infants && infants > 0) {
+      description += `${infants} bebês${infants > 1 ? 's' : ''}`;
+    }
+    return description;
   }
 
   openDialog() {

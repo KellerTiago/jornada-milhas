@@ -29,7 +29,7 @@ import { response } from 'express';
 })
 export class HomeComponent {
   [x: string]: any;
-  promotion: Promotion[] = []; // Inicialize como array vazio
+  promotion: Promotion[] = [];
   testimonial: Testimonial[] = [];
 
   constructor(
