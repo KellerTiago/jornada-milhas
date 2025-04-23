@@ -1,0 +1,27 @@
+.modal__age {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  &-category {
+    font-weight: bold;
+  }
+}
+.modal__button {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  &-decrement,
+  &-increment {
+    background-color: #e8def8;
+    border-radius: 64px;
+    padding: 8px;
+    border: grey;
+    cursor: pointer;
+  }
+}

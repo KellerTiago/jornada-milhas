@@ -8,7 +8,6 @@ import { MatChipSelectionChange } from '@angular/material/chips';
   providedIn: 'root',
 })
 export class SearchFormService {
-  
   formSearch: FormGroup;
 
   constructor(private dialog: MatDialog) {
@@ -30,7 +29,7 @@ export class SearchFormService {
     console.log('Tipo alterado para: ', type);
   }
 
-  changControl(name:string): FormControl {
+  changeControl(name: string): FormControl {
     const control = this.formSearch.get(name);
     if (!control) {
       throw new Error(`FormControl com nome "${name}" não existe.`);
@@ -38,20 +37,29 @@ export class SearchFormService {
     return control as FormControl;
   }
 
+  changeOriginDestination(): void {
+    const origin = this.formSearch.get('origin')?.value;
+    const destination = this.formSearch.get('destination')?.value;
+
+    this.formSearch.patchValue({
+      origin: destination,
+      destination: origin
+    })
+  }
 
   getDescripionPassenger(): string {
     let description = '';
     const adult = this.formSearch.get('adult')?.value;
     if (adult && adult > 0) {
-      description += `${adult} adultos${adult > 1 ? 's' : ''}`;
+      description += `${adult} adultos${adult > 1 ? '' : 's'}`;
     }
     const children = this.formSearch.get('children')?.value;
     if (children && children > 0) {
-      description += `${children} crianças${children > 1 ? 's' : ''}`;
+      description += `${children} crianças${children > 1 ? '' : 's'}`;
     }
     const infants = this.formSearch.get('infants')?.value;
     if (infants && infants > 0) {
-      description += `${infants} bebês${infants > 1 ? 's' : ''}`;
+      description += `${infants} bebês${infants > 1 ? '' : 's'}`;
     }
     return description;
   }

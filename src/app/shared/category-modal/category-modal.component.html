@@ -1,0 +1,13 @@
+<ul class="modal__age">
+    <li class="modal__age-category">{{title}}</li>
+    <li class="modal__age-description">{{subtitle}}</li>
+    <li class="modal__button">
+        <button class="modal__button-decrement" mat-mini-fab (click)="decrease()">
+            <mat-icon fontIcon="do_not_disturb_on"></mat-icon>
+        </button>
+        <span>{{value}}</span>
+        <button class="modal__button-increment" mat-mini-fab (click)="increase()">
+            <mat-icon fontIcon="add_circle"></mat-icon>
+        </button>
+    </li>
+</ul>

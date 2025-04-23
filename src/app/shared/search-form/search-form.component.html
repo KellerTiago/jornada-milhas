@@ -11,24 +11,29 @@
                 </mat-button-toggle>
             </mat-button-toggle-group>
 
-            <mat-chip-listbox (click)="searchFormService.openDialog()" class="flight-search__chip-list" aria-label="Seleção de passagens">
+            <mat-chip-listbox (click)="searchFormService.openDialog()" class="flight-search__chip-list"
+                aria-label="Seleção de passagens">
                 <mat-chip-option class="flight-search__chip" selected>
-                    1 Adulto
+                    {{searchFormService.getDescripionPassenger()}}
                 </mat-chip-option>
                 <mat-chip-option class="flight-search__chip">
-                    Econômica
+                    {{searchFormService.changeControl('type').value}}
                 </mat-chip-option>
             </mat-chip-listbox>
         </div>
 
         <div class="flight-search__group">
-            <app-dropdown-us matPrefix="flight_takeoff" matLabel="Origem" matSuffix="search"></app-dropdown-us>
+            <app-dropdown-us matPrefix="flight_takeoff" matSuffix="search" matLabel="Origem" formControlName="origin">
+            </app-dropdown-us>
 
-            <button class="flight-search__swap-button" mat-icon-button>
+            <button class="flight-search__swap-button" (click)="searchFormService.changeOriginDestination()"
+                mat-icon-button>
                 <mat-icon class="flight-search__swap-icon">sync_alt</mat-icon>
             </button>
 
-            <app-dropdown-us matPrefix="flight_land" matLabel="Destino" matSuffix="search"></app-dropdown-us>
+            <app-dropdown-us matPrefix="flight_land" matSuffix="search" matLabel="Destino"
+                formControlName="destination">
+            </app-dropdown-us>
 
             <mat-form-field class="flight-search__date" appearance="outline">
                 <mat-label>Data de ida</mat-label>
@@ -42,8 +47,8 @@
                 <mat-datepicker-toggle matIconSuffix [for]="volta"></mat-datepicker-toggle>
                 <mat-datepicker #volta></mat-datepicker>
             </mat-form-field>
-            <button class="flight-search__submit" mat-flat-button >Buscar</button>
+            <button class="flight-search__submit" mat-flat-button>Buscar</button>
         </div>
-        
+
     </form>
 </app-card>

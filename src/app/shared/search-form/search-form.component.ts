@@ -32,5 +32,6 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './search-form.component.scss',
 })
 export class SearchFormComponent {
+formSearch: any;
   constructor(public searchFormService: SearchFormService) {}
 }

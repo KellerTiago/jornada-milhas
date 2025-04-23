@@ -1,18 +1,31 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, forwardRef } from '@angular/core';
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FederalUnitService } from '../../../core/service/federal-unit/federal-unit.service';
 import { States } from '../../../core/types/states';
-import { FormControl,FormsModule,ReactiveFormsModule} from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-import {AsyncPipe} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-dropdown-us',
   standalone: true,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => DropdownUsComponent),
+      multi: true,
+    },
+  ],
   imports: [
     MatAutocompleteModule,
     MatFormFieldModule,
@@ -20,12 +33,12 @@ import {AsyncPipe} from '@angular/common';
     MatInputModule,
     AsyncPipe,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './dropdown-us.component.html',
   styleUrl: './dropdown-us.component.scss',
 })
-export class DropdownUsComponent {
+export class DropdownUsComponent implements ControlValueAccessor {
   @Input() matPrefix: string = '';
   @Input() matLabel: string = '';
   @Input() matSuffix: string = '';
@@ -33,6 +46,9 @@ export class DropdownUsComponent {
   options: States[] = [];
   myControl = new FormControl('');
   filteredOptions!: Observable<States[]>;
+
+  private onChange = (value: any) => {};
+  private onTouched = () => {};
 
   constructor(private federalUnitService: FederalUnitService) {}
 
@@ -43,15 +59,34 @@ export class DropdownUsComponent {
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value || ''))
+      map((value) => this._filter(value || ''))
     );
+
+    this.myControl.valueChanges.subscribe((value) => {
+      this.onChange(value);
+    });
+  }
+
+  writeValue(value: any): void {
+    this.myControl.setValue(value, { emitEvent: false });
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
+    isDisabled ? this.myControl.disable() : this.myControl.enable();
   }
 
   private _filter(value: string): States[] {
     const filterValue = value.toLowerCase();
-    const result = this.options.filter(option =>
+    return this.options.filter((option) =>
       option.stateName.toLowerCase().includes(filterValue)
     );
-    return result
   }
 }
